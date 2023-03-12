@@ -10,7 +10,7 @@
 
 <div class="add-book-box">
   <h2>Add New Book</h2>
-  <form method="POST" action="{{ route("books.store") }}" enctype="multipart/form-data">
+  <form method="POST" action="{{ route("books.store") }}">
 
     @csrf
 

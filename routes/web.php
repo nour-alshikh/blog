@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
-
+use App\Http\Controllers\CatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +33,19 @@ Route::post('/books/update/{id}', [BookController::class ,'update'])->name('book
 
 //books::delete
 Route::get('/books/delete/{id}', [BookController::class ,'delete'])->name('books.delete');
+
+
+//cats::read
+Route::get('/cats', [CatController::class ,'index'])->name('cats');
+Route::get('/cats/show/{id}', [CatController::class ,'show'])->name('cats.show');
+
+//cats::create
+Route::get('/cats/create', [CatController::class ,'create'])->name('cats.create');
+Route::post('/cats/store', [CatController::class ,'store'])->name('cats.store');
+
+//cats::update
+Route::get('/cats/edit/{id}', [CatController::class ,'edit'])->name('cats.edit');
+Route::post('/cats/update/{id}', [CatController::class ,'update'])->name('cats.update');
+
+//cats::delete
+Route::get('/cats/delete/{id}', [CatController::class ,'delete'])->name('cats.delete');
