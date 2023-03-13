@@ -30,15 +30,23 @@ class BookController extends Controller
             'img'=>'nullable|image'
         ]);
 
-        $img = $request->file('img');
-        $ext = $img->getClientOriginalExtension();
-        $name = 'book-' . uniqid() . '.' . $ext;
-        $img->move(public_path('uploads/books'),$name);
+        if($request->hasFile('img')){
+            $img = $request->file('img');
+            $ext = $img->getClientOriginalExtension();
+            $name = 'book-' . uniqid() . '.' . $ext;
+            $img->move(public_path('uploads/books'),$name);
+
+            Book::create([
+                'title' => $request->title,
+                'desc' => $request->desc,
+                'img' => $name
+            ]);
+            return redirect( route('books') );
+        }
 
         Book::create([
             'title' => $request->title,
             'desc' => $request->desc,
-            'img' => $name
         ]);
         return redirect( route('books') );
     }

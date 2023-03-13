@@ -19,8 +19,10 @@
     </a>
     <div class="d-flex justify-content-between align-items-center">
         <a href="{{ route('cats.show' , $cat->id) }}" class="btn btn-primary d-block mx-2" >Show</a>
+        @auth
         <a href="{{ route('cats.edit' , $cat->id) }}" class="btn btn-success d-block mx-2" >Edit</a>
         <a href="{{ route('cats.delete' , $cat->id) }}" class="btn btn-danger d-block mx-2" >Delete</a>
+        @endauth
     </div>
 </div>
 <hr>

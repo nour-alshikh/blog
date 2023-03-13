@@ -1,0 +1,133 @@
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+    background: #141e30;
+    color: white;
+}
+
+.nav-link {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.nav-link:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 100px #03e9f4;
+}
+
+.logo {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.reg {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.reg:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 100px #03e9f4;
+}
+
+.login {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #05c46b;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.login:hover {
+    background: #05c46b;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #05c46b,
+        0 0 25px #05c46b,
+        0 0 50px #05c46b,
+        0 0 100px #05c46b;
+}
+
+.logout {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ff3f34;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.logout:hover {
+    background: #ff3f34;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ff3f34,
+        0 0 25px #ff3f34,
+        0 0 50px #ff3f34,
+        0 0 100px #ff3f34;
+}

@@ -12,4 +12,8 @@ class Book extends Model
     protected $fillable = [
         'title' , 'desc' , 'img'
     ];
+
+    public function cats(){
+        return $this->belongsToMany('App\Cat');
+    }
 }
