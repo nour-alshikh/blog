@@ -2,40 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cat;
 use App\Models\Book;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class BookController extends Controller
+class ApiBookController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        $books = Book::with('cats')->get();
 
-        $books = Book::orderBy('id' , 'DESC')->get();
-        // $books = Book::select('title' , 'desc')->where('id' , '>=' , 2)->orderBy('id' , 'DESC')->get();
-        return view('books.index' , compact('books'));
+        return response()->json($books);
     }
 
-    public function show($id){
-        $book = Book::findOrFail($id);
+    public function show($id)
+    {
+        $books = Book::with('cats')->findOrFail($id);
 
-        $notes = Note::where('book_id' , '=' ,$id)->get();
-        return view('books.show' , compact('book' , 'notes'));
+        return response()->json($books);
     }
 
-    public function create(){
-        $cats = Cat::all();
-        return view('books.create' , compact('cats'));
-    }
 
-    public function store(Request $request){
-        $request->validate([
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'title'=> 'required|max:100|string',
             'desc'=> 'required|string',
             'img'=>'nullable|image',
             'cat_ids' => 'required',
             'cat_ids.*' => 'exists:cats,id',
         ]);
+
+        if($validator->fails()){
+            $err = $validator->errors();
+            return response()->json($err);
+        }
 
         if($request->hasFile('img')){
             $img = $request->file('img');
@@ -50,8 +52,8 @@ class BookController extends Controller
             ]);
 
             $book->cats()->sync($request->cat_ids);
-
-            return redirect( route('books') );
+            $success = "Book Created Successfully";
+            return response()->json($success);
         }
 
         $book = Book::create([
@@ -59,22 +61,24 @@ class BookController extends Controller
             'desc' => $request->desc,
         ]);
         $book->cats()->sync($request->cat_ids);
-        return redirect( route('books') );
-    }
-
-    public function edit($id){
-        $book = Book::findOrFail($id);
-        return view('books.edit' , compact('book'));
+        $success = "Book Created Successfully";
+        return response()->json($success);
     }
 
     public function update(Request $request , $id){
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title'=> 'required|max:100|string',
             'desc'=> 'required|string',
-            'img' =>'nullable|image',
+            'img'=>'nullable|image',
             'cat_ids' => 'required',
             'cat_ids.*' => 'exists:cats,id',
         ]);
+
+        if($validator->fails()){
+            $err = $validator->errors();
+            return response()->json($err);
+        }
+
         $book = Book::findOrFail($id);
         $name = $book->img;
 
@@ -99,10 +103,12 @@ class BookController extends Controller
 
         $book->cats()->sync($request->cat_ids);
 
-        return redirect( route('books') );
+        $success = "Book Updated successfully";
+
+        return response()->json($success);
     }
 
-    public function delete($id){
+        public function delete($id){
         $book = Book::findOrFail($id);
 
         if($book->img !== null){
@@ -115,13 +121,9 @@ class BookController extends Controller
             $note->delete();
         }
         $book->delete();
-        return redirect( route('books') );
-    }
 
-    public function search(Request $request){
-        $keyword = $request->search;
-        $books = Book::where('title' , 'like' , "%$keyword%")->get();
+        $success = "Book deleted successfully";
 
-        return response()->json($books);
+        return response()->json($success);
     }
 }

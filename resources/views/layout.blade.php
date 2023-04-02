@@ -13,63 +13,12 @@
     @yield('style')
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="logo fs-3" href="{{route('books')}}">Library</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{route('books')}}">
-            Home
-        </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{route('books')}}">
-            Books
-        </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{route('cats')}}">
-            Categories
-        </a>
-        </li>
-        @guest
-        <li class="nav-item mx-3">
-          <a class="nav-link reg" href="{{route('auth.register')}}">
-            Register
-        </a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link login" href="{{route('auth.login')}}">
-            Log in
-        </a>
-        </li>
-        @endguest
-        @auth
-        <li class="nav-item mx-3">
-          <a class="nav-link logout" href="{{route('auth.logout')}}">
-            Log out
-        </a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="logo disabled" href="#">
-            {{ Auth::user()->name }}
-        </a>
-        </li>
-
-        @endauth
-      </ul>
-    </div>
-  </div>
-</nav>
+<x-navbar></x-navbar>
     <div class="container py-5">
         @yield('content')
     </div>
-    @yield('script')
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/jquery-3.6.1.min.js')}}"></script>
+    <script src="{{asset('js/jquery-3.6.4.js')}}"></script>
+    @yield('script')
 </body>
 </html>

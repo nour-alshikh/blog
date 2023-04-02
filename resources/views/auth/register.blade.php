@@ -35,6 +35,7 @@
       Submit
     </button>
   </form>
+  <a href="{{ route('auth.redirect') }}">Github</a>
 </div>
 @endsection
 

@@ -1,10 +1,10 @@
 body {
-    min-height: 100vh;
+    height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Cairo', sans-serif;
-    background: #141e30;
     color: white;
+    background: linear-gradient(45deg, #141e30, #243b55);
 }
 
 .nav-link {

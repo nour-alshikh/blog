@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Book;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Cat extends Model
 {
@@ -13,7 +15,7 @@ class Cat extends Model
         'name'
     ];
 
-    public function books(){
-        return $this->belongsToMany('App\Book');
+    public function books(): BelongsToMany{
+        return $this->belongsToMany(Book::class);
     }
 }

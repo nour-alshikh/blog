@@ -5,32 +5,71 @@
 @endsection
 
 @section('content')
+    <div class="search-book-box">
+        <div class="book-box">
+            <input type="text" id="keyword" placeholder="search...">
+        </div>
+    </div>
 
-<h1>All Books</h1>
+    <div class="d-flex justify-content-between align-items-center py-5">
 
-<a href="{{ route('books.create') }}" class="btn btn-primary" >Add New Book</a>
+        <h1>@lang('site.all')</h1>
 
-@foreach ($books as $book)
-<div class="d-flex justify-content-between align-items-center my-5 mx-auto" style="width: 70%">
-    <a  href="{{ route("books.show" , $book->id) }}">
-        <h3>
-            {{ $book->title }}
-        </h3>
-    </a>
-    <h4>{{ $book->desc }}</h4>
-        <div class="d-flex justify-content-between align-items-center">
-        <a href="{{ route('books.show' , $book->id) }}" class="btn btn-primary d-block mx-2" >Show</a>
         @auth
-        <a href="{{ route('books.edit' , $book->id) }}" class="btn btn-success d-block mx-2" >Edit</a>
-        <a href="{{ route('books.delete' , $book->id) }}" class="btn btn-danger d-block mx-2" >Delete</a>
+            <a href="{{ route('books.create') }}" class="btn btn-primary">@lang('site.add_n')</a>
         @endauth
     </div>
-</div>
-    <hr>
-    @endforeach
-    <span style="padding: 20px; width: 500px;">
-        {!!$books->withQueryString()->links('pagination::bootstrap-5')!!}
-    </span>
 
+    <div id="books">
+        @foreach ($books as $book)
+            <div class="d-flex justify-content-between align-items-center my-5 mx-auto" style="width: 70%">
+                <a href="{{ route('books.show', $book->id) }}">
+                    <h3>
+                        {{ $book->title }}
+                    </h3>
+                </a>
+                <h4>{{ $book->desc }}</h4>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="{{ route('books.show', $book->id) }}"
+                        class="btn btn-primary d-block mx-2">@lang('site.show')</a>
+                    @auth
+                        <a href="{{ route('books.edit', $book->id) }}"
+                            class="btn btn-success d-block mx-2">@lang('site.edit')</a>
+                        @if (Auth::user()->is_admin == 1)
+                            <a href="{{ route('books.delete', $book->id) }}"
+                                class="btn btn-danger d-block mx-2">@lang('site.delete')</a>
+                        @endif
+                    @endauth
+                </div>
+            </div>
+            <hr>
+        @endforeach
+    </div>
 @endsection
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/create.css') }}">
+@endsection
+
+@section('script')
+    <script>
+        $('#keyword').keyup(function() {
+            let keyword = $(this).val();
+            let url = "{{ route('books.search') }}" + "?search=" + keyword
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                contentType: false,
+                processDate: false,
+                success: function(data) {
+                    $('#books').empty();
+                    for (book of data) {
+                        $('#books').append(`<h3>${book.title}</h3>
+                        <h4>${book.desc}</h4>`)
+                    }
+                }
+            })
+        })
+    </script>
+@endsection

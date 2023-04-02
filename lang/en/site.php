@@ -1,0 +1,32 @@
+<?php
+
+return
+[
+    'books' => "Books",
+    'cats' => "Categories",
+    'logout' => "Log out",
+    'chan' => "Change Lang.",
+    'home' => "Home",
+    'library' => "Library",
+    'all' => "All Books",
+    'add_n' => "Add New Book",
+    'show' => "Show",
+    'edit' => "Edit",
+    'delete' => "Delete",
+    'title' => "Title",
+    'desc' => "Description",
+    'add' => "Add",
+    'edit_book' => "Edit Book",
+    'book_title' => "Book Title",
+    'book_desc' => "Book Description",
+    'cats' => "Categories",
+    'back' => "Back",
+    'me' => "Me",
+    'comments' => "Comments",
+    'add_comment' => "Add Comment",
+    'name' => "Name",
+    'add_new_cat' => "Add New Category",
+    'edit_cat' => "Edit Category",
+    'all_cats' => "All Categories",
+    'cat_name' => "Category Name",
+];

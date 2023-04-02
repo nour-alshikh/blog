@@ -1,32 +1,31 @@
 @extends('layout')
 
 @section('title')
-    Edit Category - {{$cat->title}}
+    Edit Category - {{ $cat->name }}
 @endsection
 
 @section('content')
+    @include('inc.errors')
 
-@include('inc.errors')
+    <div class="add-book-box">
+        <h2>@lang('site.edit_cat') - {{ $cat->name }}</h2>
+        <form method="POST" action="{{ route('cats.update', $cat->id) }}">
 
-<div class="add-book-box">
-  <h2>Edit Category {{ $cat->title }}</h2>
-  <form method="POST" action="{{ route("cats.update" , $cat->id) }}">
+            @csrf
 
-    @csrf
-
-    <div class="book-box">
-      <input type="text" name="name" value="{{ old('name') ?? $cat->name }}">
-      <label>Name</label>
+            <div class="book-box">
+                <input type="text" name="name" value="{{ old('name') ?? $cat->name }}">
+                <label>@lang('site.name')</label>
+            </div>
+            <button type="submit">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                @lang('site.edit')
+            </button>
+        </form>
     </div>
-    <button type="submit">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      Submit
-    </button>
-  </form>
-</div>
 @endsection
 
 @section('style')
